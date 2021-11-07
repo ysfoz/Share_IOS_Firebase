@@ -11,7 +11,7 @@
         <!--Upload-->
         <scene sceneID="8E5-5j-dIr">
             <objects>
-                <viewController id="XrD-3y-3IK" sceneMemberID="viewController">
+                <viewController id="XrD-3y-3IK" customClass="UploadViewController" customModule="Share_Firebase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yrE-ff-HPg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,10 +24,40 @@
             </objects>
             <point key="canvasLocation" x="-597" y="423"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="DaF-di-m3h">
+            <objects>
+                <viewController id="qF2-JT-LNH" customClass="SettingsViewController" customModule="Share_Firebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5VO-XX-990">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8E-Y3-0LY">
+                                <rect key="frame" x="142" y="358" width="131" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logaut"/>
+                                <connections>
+                                    <action selector="logoutButtonClicked:" destination="qF2-JT-LNH" eventType="touchUpInside" id="Vms-EE-iW5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="q72-Z6-lLq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="s.circle.fill" catalog="system" id="IVA-lJ-1Fk"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toViewController" modalPresentationStyle="fullScreen" id="02I-2a-nUd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l7o-ZL-PJo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-597.10144927536237" y="1181.9196428571429"/>
+        </scene>
         <!--Feed-->
         <scene sceneID="tmg-ux-LBJ">
             <objects>
-                <viewController id="HjY-YC-Dxf" sceneMemberID="viewController">
+                <viewController id="HjY-YC-Dxf" customClass="FeedViewController" customModule="Share_Firebase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YPn-HG-yxe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kW5-EB-dKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-597" y="-184"/>
+            <point key="canvasLocation" x="-597" y="-342"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="HCP-OL-TyL">
@@ -53,6 +83,7 @@
                     <connections>
                         <segue destination="HjY-YC-Dxf" kind="relationship" relationship="viewControllers" id="5bP-cP-NoL"/>
                         <segue destination="XrD-3y-3IK" kind="relationship" relationship="viewControllers" id="c0F-eD-fTv"/>
+                        <segue destination="qF2-JT-LNH" kind="relationship" relationship="viewControllers" id="359-sQ-ZBI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqs-5F-gdu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -121,6 +152,7 @@
     </scenes>
     <resources>
         <image name="f.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="s.circle.fill" catalog="system" width="128" height="121"/>
         <image name="u.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
