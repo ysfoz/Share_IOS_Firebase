@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -33,9 +35,46 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
         
     }
-      
-    @IBAction func actionButtonClicked(_ sender: Any) {
+    
+    func makeAlert(title:String, message:String) {
+        let alert = UIAlertController(title:title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
+
+            @IBAction func uploadButtonClicked(_ sender: Any) {
+                
+                let storage = Storage.storage()
+                let storageReference = storage.reference()
+                // referance bize firebase storage konumunu gosteriyor. child dedigimizde icerisindeki bir klasore ulasmis ya da olusturmus oluyoruz. onun icersindeki bask abir klasore ulasmak icin yine .child denebilir
+                let mediaFolder = storageReference.child("media")
+                
+                // firebase Storage icerisine image i kaydetmek icin
+                
+                if let data = imageView.image?.jpegData(compressionQuality: 0.4) {
+                    let uuid = UUID().uuidString
+                    let imageReferance = mediaFolder.child("\(uuid).jpeg")
+                    imageReferance.putData(data, metadata: nil) { metaData, error in
+                        if error != nil {
+                            self.makeAlert(title: "Error!", message: error?.localizedDescription ?? "Error!")
+                        } else {
+                            imageReferance.downloadURL { url, error in
+                                if error == nil {
+                                    let imageURL = url?.absoluteString
+                                    
+                                    // tum verileri DATABASE icerisine kaydetmek icin
+                                    let firestoreDatabase = Fir
+                                    
+                            }
+                        }
+                        }
+                    }
+                    
+                }
+                
+            }
+            
     
 }
 
