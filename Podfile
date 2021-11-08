@@ -8,6 +8,8 @@ target 'Share_Firebase' do
 # https://firebase.google.com/docs/ios/setup#available-pods
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
+pod 'Firebase/Firestore'
+pod 'FirebaseFirestoreSwift'
   # Pods for Share_Firebase
 
 end

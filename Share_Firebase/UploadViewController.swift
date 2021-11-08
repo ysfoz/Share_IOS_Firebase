@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+
 
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -64,7 +66,19 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                                     let imageURL = url?.absoluteString
                                     
                                     // tum verileri DATABASE icerisine kaydetmek icin
-                                    let firestoreDatabase = Fir
+                                    
+                                    let firestoreDatabase = Firestore.firestore()
+                                    var firestoreReferance : DocumentReference? = nil
+                                    let firestorePost = ["imageUrl":imageURL,"postedby":Auth.auth().currentUser!.email,"postComment":self.commentText.text!,"date": FieldValue.serverTimestamp(), "likes": 0 ] as [String: Any]
+                                    firestoreReferance = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { error in
+                                        if error != nil {
+                                            self.makeAlert(title: "Error!", message: error?.localizedDescription ?? "Error!")
+                                        } else {
+                                            self.tabBarController?.selectedIndex = 0
+                                        }
+                                    })
+                                    
+                                    
                                     
                             }
                         }
@@ -75,6 +89,19 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
             }
             
+    
+//    var ref: DocumentReference? = nil
+//    ref = db.collection("users").addDocument(data: [
+//        "first": "Ada",
+//        "last": "Lovelace",
+//        "born": 1815
+//    ]) { err in
+//        if let err = err {
+//            print("Error adding document: \(err)")
+//        } else {
+//            print("Document added with ID: \(ref!.documentID)")
+//        }
+//    }
     
 }
 
