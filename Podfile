@@ -10,6 +10,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Firestore'
 pod 'FirebaseFirestoreSwift'
+pod 'SDWebImage', '~> 5.0'
   # Pods for Share_Firebase
 
 end

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -34,8 +35,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func getData() {
         let db = Firestore.firestore()
         db.collection("Posts").getDocuments { querysnapshot, error in
-            if let error = error {
-                print("Errooooooorrrrr : \(error)")
+            if error != nil {
+                print(error?.localizedDescription)
             } else {
                 if querysnapshot?.isEmpty != true {
                     
@@ -72,17 +73,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("indexPath22 \(userEmailArray), \(userCommentArray),\(userImageArray), \(likeArray)")
         return userEmailArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->  UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         print("indexPath \(indexPath.row), \(userCommentArray.count)")
-        cell.userEmailLabel.text = "user@email.com"
-        cell.commnetLabel.text = "test"
-        cell.likeLabel.text = "100"
-        cell.userImageView.image = UIImage(named: "select.png")
+        cell.userEmailLabel.text = userEmailArray[indexPath.row]
+        cell.commnetLabel.text = userCommentArray[indexPath.row]
+        cell.likeLabel.text = String(likeArray[indexPath.row])
+        cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         return cell
     }
     
