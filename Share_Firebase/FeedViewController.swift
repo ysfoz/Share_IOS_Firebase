@@ -23,12 +23,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userCommentArray = [String]()
     var likeArray = [Int]()
     var userImageArray = [String]()
+    var documentIDArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        getData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         getData()
     }
   
@@ -44,8 +49,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.userEmailArray.removeAll(keepingCapacity: false)
                     self.userCommentArray.removeAll(keepingCapacity: false)
                     self.likeArray.removeAll(keepingCapacity: false)
+                    self.documentIDArray.removeAll(keepingCapacity: false)
                     for document in querysnapshot!.documents {
                         let documentID = document.documentID
+                        self.documentIDArray.append(documentID)
                         
                         if let postedby = document.get("postedby") as? String {
                             self.userEmailArray.append(postedby)
@@ -78,11 +85,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->  UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        print("indexPath \(indexPath.row), \(userCommentArray.count)")
         cell.userEmailLabel.text = userEmailArray[indexPath.row]
         cell.commnetLabel.text = userCommentArray[indexPath.row]
         cell.likeLabel.text = String(likeArray[indexPath.row])
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
+        cell.documentIdLabel.text = documentIDArray[indexPath.row]
         return cell
     }
     
