@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E22C5BD273ACAA00019CADB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E22C5BC273ACAA00019CADB /* FeedCell.swift */; };
 		4E9ABCAC273824EF00B90012 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9ABCAB273824EF00B90012 /* AppDelegate.swift */; };
 		4E9ABCAE273824EF00B90012 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9ABCAD273824EF00B90012 /* SceneDelegate.swift */; };
 		4E9ABCB0273824EF00B90012 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9ABCAF273824EF00B90012 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		22DAE5D8F32F0B8B18004FB1 /* Pods-Share_Firebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Share_Firebase.release.xcconfig"; path = "Target Support Files/Pods-Share_Firebase/Pods-Share_Firebase.release.xcconfig"; sourceTree = "<group>"; };
+		4E22C5BC273ACAA00019CADB /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		4E9ABCA8273824EF00B90012 /* Share_Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Share_Firebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E9ABCAB273824EF00B90012 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E9ABCAD273824EF00B90012 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				4E9ABCC12738616200B90012 /* FeedViewController.swift */,
 				4E9ABCC32738617A00B90012 /* UploadViewController.swift */,
 				4E9ABCC52738618B00B90012 /* SettingsViewController.swift */,
+				4E22C5BC273ACAA00019CADB /* FeedCell.swift */,
 				4E9ABCB1273824EF00B90012 /* Main.storyboard */,
 				4E9ABCB4273824F100B90012 /* Assets.xcassets */,
 				4E9ABCB6273824F100B90012 /* LaunchScreen.storyboard */,
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E22C5BD273ACAA00019CADB /* FeedCell.swift in Sources */,
 				4E9ABCB0273824EF00B90012 /* ViewController.swift in Sources */,
 				4E9ABCC42738617A00B90012 /* UploadViewController.swift in Sources */,
 				4E9ABCAC273824EF00B90012 /* AppDelegate.swift in Sources */,
