@@ -34,16 +34,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
   
     func getData() {
         let db = Firestore.firestore()
-        db.collection("Posts").getDocuments { querysnapshot, error in
+        db.collection("Posts").order(by: "date", descending: true).getDocuments { querysnapshot, error in
             if error != nil {
                 print(error?.localizedDescription)
             } else {
                 if querysnapshot?.isEmpty != true {
                     
-                    self.userImageArray.removeAll()
-                    self.userEmailArray.removeAll()
-                    self.userCommentArray.removeAll()
-                    self.likeArray.removeAll()
+                    self.userImageArray.removeAll(keepingCapacity: false)
+                    self.userEmailArray.removeAll(keepingCapacity: false)
+                    self.userCommentArray.removeAll(keepingCapacity: false)
+                    self.likeArray.removeAll(keepingCapacity: false)
                     for document in querysnapshot!.documents {
                         let documentID = document.documentID
                         
