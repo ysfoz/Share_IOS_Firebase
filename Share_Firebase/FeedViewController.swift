@@ -33,24 +33,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         getData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        getData()
-    }
   
     func getData() {
         let db = Firestore.firestore()
-        db.collection("Posts").order(by: "date", descending: true).getDocuments { querysnapshot, error in
+        
+        db.collection("Posts").order(by: "date", descending: true).addSnapshotListener { snapshot, error in
             if error != nil {
                 print(error?.localizedDescription)
             } else {
-                if querysnapshot?.isEmpty != true {
-                    
+                if snapshot?.isEmpty != true && snapshot != nil {
                     self.userImageArray.removeAll(keepingCapacity: false)
                     self.userEmailArray.removeAll(keepingCapacity: false)
                     self.userCommentArray.removeAll(keepingCapacity: false)
                     self.likeArray.removeAll(keepingCapacity: false)
                     self.documentIDArray.removeAll(keepingCapacity: false)
-                    for document in querysnapshot!.documents {
+                    
+                    for document in snapshot!.documents {
                         let documentID = document.documentID
                         self.documentIDArray.append(documentID)
                         
@@ -71,11 +69,49 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                     self.tableView.reloadData()
                 }
-                
-               
             }
-            
         }
+        
+        // bu sekilde yapldiginda anlik veri degisimini takip etmiyor. listener eklendiginde yapian her degisikik sonrasinda verileri tekrar guncelliyor
+        
+        
+//        db.collection("Posts").order(by: "date", descending: true).getDocuments { querysnapshot, error in
+//            if error != nil {
+//                print(error?.localizedDescription)
+//            } else {
+//                if querysnapshot?.isEmpty != true {
+//
+//                    self.userImageArray.removeAll(keepingCapacity: false)
+//                    self.userEmailArray.removeAll(keepingCapacity: false)
+//                    self.userCommentArray.removeAll(keepingCapacity: false)
+//                    self.likeArray.removeAll(keepingCapacity: false)
+//                    self.documentIDArray.removeAll(keepingCapacity: false)
+//                    for document in querysnapshot!.documents {
+//                        let documentID = document.documentID
+//                        self.documentIDArray.append(documentID)
+//
+//                        if let postedby = document.get("postedby") as? String {
+//                            self.userEmailArray.append(postedby)
+//                            print(self.userEmailArray)
+//                        }
+//                        if let postComment = document.get("postComment") as? String {
+//                            self.userCommentArray.append(postComment)
+//                        }
+//                        if let likes = document.get("likes") as? Int {
+//                            self.likeArray.append(likes)
+//                        }
+//                        if let imageUrl = document.get("imageUrl") as? String {
+//                            self.userImageArray.append(imageUrl)
+//                        }
+//
+//                    }
+//                    self.tableView.reloadData()
+//                }
+//
+//
+//            }
+//
+//        }
     }
     
     

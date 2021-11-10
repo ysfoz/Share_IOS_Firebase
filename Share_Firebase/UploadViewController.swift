@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
+
 
 
 
@@ -54,7 +54,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 
                 // firebase Storage icerisine image i kaydetmek icin
                 
-                if let data = imageView.image?.jpegData(compressionQuality: 0.4) {
+                if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
                     let uuid = UUID().uuidString
                     let imageReferance = mediaFolder.child("\(uuid).jpeg")
                     imageReferance.putData(data, metadata: nil) { metaData, error in
@@ -69,11 +69,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                                     
                                     let firestoreDatabase = Firestore.firestore()
                                     var firestoreReferance : DocumentReference? = nil
-                                    let firestorePost = ["imageUrl":imageURL,"postedby":Auth.auth().currentUser!.email,"postComment":self.commentText.text!,"date": FieldValue.serverTimestamp(), "likes": 0 ] as [String: Any]
+                                    let firestorePost = ["imageUrl":imageURL!,"postedby":Auth.auth().currentUser!.email!,"postComment":self.commentText.text!,"date": FieldValue.serverTimestamp(), "likes": 0 ] as [String: Any]
                                     firestoreReferance = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { error in
                                         if error != nil {
                                             self.makeAlert(title: "Error!", message: error?.localizedDescription ?? "Error!")
                                         } else {
+                                            self.commentText.text = ""
+                                            self.imageView.image = UIImage(named: "select")
                                             self.tabBarController?.selectedIndex = 0
                                         }
                                     })
